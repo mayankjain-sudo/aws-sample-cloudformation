@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: This template create a security group.
+Description: This template create a vpc.
 Parameters:
   CIDR:
     Description: Valid CIDR range for VPC
