@@ -1,0 +1,66 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This template create a VPC with a subnet.",
+    "Parameters": {
+        "CIDRVPC": {
+            "Description": "Valid CIDR range for VPC",
+            "Type": "String",
+            "Default": "10.0.0.0/16"
+        },
+        "CIDRSubnet": {
+            "Description": "Valid CIDR range for Subnet in VPC",
+            "Type": "String",
+            "Default": "10.0.10.0/24"
+        }
+    },
+    "Resources": {
+        "MyVPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": {
+                    "Ref": "CIDRVPC"
+                },
+                "EnableDnsSupport": "false",
+                "EnableDnsHostnames": "false",
+                "InstanceTenancy": "default",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "TestVPC"
+                    }
+                ]
+            }
+        },
+        "MySubnet": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": {
+                    "Ref": "MyVPC"
+                },
+                "CidrBlock": {
+                    "Ref": "CIDRSubnet"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "TestSubnet"
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs": {
+        "VPCID": {
+            "Description": "VPC ID",
+            "Value": {
+                "Ref": "MyVPC"
+            }
+        },
+        "SubnetID": {
+            "Description": "Subnet ID",
+            "Value": {
+                "Ref": "MySubnet"
+            }
+        }
+    }
+}
