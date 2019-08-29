@@ -33,6 +33,7 @@
         },
         "MySubnet": {
             "Type": "AWS::EC2::Subnet",
+			"DependsOn" : "MyVPC",
             "Properties": {
                 "VpcId": {
                     "Ref": "MyVPC"
