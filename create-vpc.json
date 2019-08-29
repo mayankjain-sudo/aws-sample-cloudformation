@@ -1,0 +1,36 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This template create a security group.",
+    "Parameters": {
+        "CIDR": {
+            "Description": "Valid CIDR range for VPC",
+            "Type": "String",
+            "Default": "10.0.0.0/16"
+        }
+    },
+    "Resources": {
+        "MyVPC": {
+            "Type": "AWS::EC2::VPC",
+            "Properties": {
+                "CidrBlock": "10.0.0.0/16",
+                "EnableDnsSupport": "false",
+                "EnableDnsHostnames": "false",
+                "InstanceTenancy": "default",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "TestVPC"
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs": {
+        "VPCID": {
+            "Description": "VPC ID",
+            "Value": {
+                "Ref": "MyVPC"
+            }
+        }
+    }
+}
